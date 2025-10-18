@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Booklet</title>
+
+  <!-- Custom style -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header_one">
+      <a href="#" class="logo">
+        <div class="logo-icon"><i class="fas fa-book"> Booklet</i></div>
+      </a>
+
+      <form action="" class="search-form">
+        <input type="search" id="search-box" placeholder="search here...">
+        <label for="search-box" class="fas fa-search"></label>
+      </form>
+
+      <div class="icons">
+        <div id="search-btn" class="fas fa-search"></div>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="./cart.html" class="fas fa-shopping-cart"></a>
+        <div id="login-btn" onclick="window.location.href='/signin.html'" class="fas fa-user"></div>
+      </div>
+    </div>
+
+    <div class="header_two">
+      <nav class="navbar">
+        <a href="#home">Home</a>
+        <a href="#featured">Featured</a>
+        <a href="#reviews">Reviews</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Bottom Navbar -->
+  <nav class="bottom-navbar">
+    <a href="#home" class="fas fa-home"></a>
+    <a href="#featured" class="fas fa-list"></a>
+    <a href="#arrivals" class="fas fa-tags"></a>
+    <a href="#blogs" class="fas fa-app-store"></a>
+  </nav>
+
+
+  <!-- Home Section -->
+  <section class="home" id="home">
+    <div class="row">
+      <div class="content">
+        <h3>up to 55% offers</h3>
+        <p>Welcome to your next favorite chapter—where stories come alive and knowledge finds a home.</p>
+        <a href="#" class="btn">shop now</a>
+      </div>
+
+      <div class="swiper books-list">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><a href="#"><img src="./image/book-1.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-2.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-3.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-4.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-5.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-6.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-7.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-8.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-9.png" alt=""></a></div>
+          <div class="swiper-slide"><a href="#"><img src="./image/book-10.png" alt=""></a></div>
+        </div>
+
+        <img src="./image/stand.png" class="stand" alt="">
+      </div>
+    </div>
+  </section>
+
+  <!-- Icons Section -->
+  <section class="icons-container">
+    <div class="icons">
+      <i class="fas fa-plane"></i>
+      <div class="content">
+        <h3>free shipping</h3>
+        <p>on orders over $100</p>
+      </div>
+    </div>
+
+    <div class="icons">
+      <i class="fas fa-book"></i>
+      <div class="content">
+        <h3>Get your book today</h3>
+        <p>With 20% cost for delivery</p>
+      </div>
+    </div>
+
+    <div class="icons">
+      <i class="fas fa-headset"></i>
+      <div class="content">
+        <h3>Listen to audio books</h3>
+        <p>With 60% price for each 5 books</p>
+      </div>
+    </div>
+  </section>
+
+<!-- Featured Section Start -->
+<section class="featured" id="featured">
+  <div class="heading"><span>Featured Books</span></div>
+
+  <!-- Swiper Navigation Arrows -->
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+
+  <div class="swiper featured-slider">
+    <div class="swiper-wrapper">
+
+      <!-- Book 1 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-1.png" alt="Book 1"></div>
+        <div class="content">
+          <h3>Book 1</h3>
+          <div class="price">$15.99</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 1" data-img="./image/book-1.png" data-price="15.99">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 2 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-2.png" alt="Book 2"></div>
+        <div class="content">
+          <h3>Book 2</h3>
+          <div class="price">$13.69</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 2" data-img="./image/book-2.png" data-price="13.69">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 3 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-3.png" alt="Book 3"></div>
+        <div class="content">
+          <h3>Book 3</h3>
+          <div class="price">$16.59</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 3" data-img="./image/book-3.png" data-price="16.59">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 4 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-4.png" alt="Book 4"></div>
+        <div class="content">
+          <h3>Book 4</h3>
+          <div class="price">$15.99</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 4" data-img="./image/book-4.png" data-price="15.99">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 5 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-5.png" alt="Book 5"></div>
+        <div class="content">
+          <h3>Book 5</h3>
+          <div class="price">$15.99</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 5" data-img="./image/book-5.png" data-price="15.99">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 6 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-6.png" alt="Book 6"></div>
+        <div class="content">
+          <h3>Book 6</h3>
+          <div class="price">$15.99</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 6" data-img="./image/book-6.png" data-price="15.99">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 7 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-7.png" alt="Book 7"></div>
+        <div class="content">
+          <h3>Book 7</h3>
+          <div class="price">$15.99</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 7" data-img="./image/book-7.png" data-price="15.99">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 8 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-8.png" alt="Book 8"></div>
+        <div class="content">
+          <h3>Book 8</h3>
+          <div class="price">$15.99</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 8" data-img="./image/book-8.png" data-price="15.99">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 9 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-9.png" alt="Book 9"></div>
+        <div class="content">
+          <h3>Book 9</h3>
+          <div class="price">$15.99</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 9" data-img="./image/book-9.png" data-price="15.99">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Book 10 -->
+      <div class="swiper-slide box">
+        <div class="image"><img src="./image/book-10.png" alt="Book 10"></div>
+        <div class="content">
+          <h3>Book 10</h3>
+          <div class="price">$16.59</div>
+          <a href="#" class="btn add-to-cart" data-title="Book 10" data-img="./image/book-10.png" data-price="16.59">Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+  <!---- new letter section start -->
+
+  <section class="newletter" style="background: url('./image/letter-bg.jpg') no-repeat center center fixed; background-size: cover;">
+    <form action="">
+      <h3>subscribe for latest update</h3>
+      <input type="email" placeholder="Enter your email" class="box">
+      <input type="submit" value="subscribe" class="btn">
+    </form>
+  </section>
+
+
+  <!----- review section start -->
+
+  <section class="reviews" id="reviews">
+    <h1 class="heading"><span>client's reviews</span></h1>
+
+    <div class="swiper review-slider">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide box">
+            <img src="./image/pic-1.png" alt=""> 
+            <h3>john deo</h3>
+            <p>
+              This website is sleek, fast, and incredibly easy to navigate. 
+              The design is modern and intuitive, and the book selection is top-notch. 
+              I found exactly what I needed in seconds—definitely coming back!
+            </p>
+
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+
+          <div class="swiper-slide box">
+            <img src="./image/pic-2.png" alt=""> 
+            <h3>Mark Lane</h3>
+            <p>
+              Didn’t think I’d be browsing books on a site this slick, but here I am. 
+              The layout’s cleaner than my workbench after a Friday sweep. 
+              Featured section’s got three big titles front and center—love that. 
+            </p>
+
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+
+          <div class="swiper-slide box">
+            <img src="./image/pic-3.png" alt=""> 
+            <h3>Sarah Kim</h3>
+            <p>
+              I love how peaceful the design feels. It’s not just easy to navigate—it’s soothing. Found a memoir I’ve been meaning to read, and the checkout was smoother than a shift change.
+            </p>
+
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+          
+          <div class="swiper-slide box">
+            <img src="./image/pic-4.png" alt=""> 
+            <h3>Carlos Vega</h3>
+            <p>
+              This site’s got structure. Featured books are laid out like a well-planned syllabus. I browsed for Latin American history and ended up bookmarking five titles.
+            </p>
+
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+
+          <div class="swiper-slide box">
+            <img src="./image/pic-5.png" alt=""> 
+            <h3>Nina Patel</h3>
+            <p>
+              The spacing, typography, and responsiveness? Chef’s kiss. Whoever built this understands visual hierarchy. I tested it on mobile and desktop—flawless.
+            </p>
+
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+
+          <div class="swiper-slide box">
+            <img src="./image/pic-6.png" alt=""> 
+            <h3>Derek Owens</h3>
+            <p>
+              Didn’t expect to be impressed, but here we are. It’s clean, fast, and doesn’t waste my time. Found a thriller I’ll probably read during night shift.
+            </p>
+
+            <div class="stars">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- Footer Section -->
+<section class="footer">
+  <div class="box-container">
+    <div class="box">
+      <h3>our locations</h3>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> India</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> USA</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> France</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> Brazil</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> Japan</a>
+      <a href="#"><i class="fas fa-map-marker-alt"></i> Australia</a>
+    </div>
+
+    <div class="box">
+      <h3>quick links</h3>
+      <a href="#home"><i class="fas fa-arrow-right"></i> Home</a>
+      <a href="#featured"><i class="fas fa-arrow-right"></i> Featured</a>
+      <a href="#reviews"><i class="fas fa-arrow-right"></i> Reviews</a>
+    </div>
+
+    <div class="box">
+      <h3>extra links</h3>
+      <a href="./account.html"><i class="fas fa-arrow-right"></i> Account Info</a>
+      <a href="./cart.html"><i class="fas fa-arrow-right"></i> Payment Method</a>
+      <a href="#"><i class="fas fa-arrow-right"></i> Privacy Policy</a>
+    </div>
+  </div>
+
+  <!-- World Map Image -->
+  <div class="map-container">
+    <img src="./image/map.png" alt="World Map with Locations">
+  </div>
+</section>
+
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="cart.js"></script>
+    <script>
+      document.addEventListener('click', e => {
+        if (e.target.classList.contains('add-to-cart')) {
+          e.preventDefault();
+          const title = e.target.dataset.title;
+          const img = e.target.dataset.img;
+          const price = parseFloat(e.target.dataset.price);
+
+          if (!title || !img || isNaN(price)) {
+            alert('This book cannot be added to cart. Missing data.');
+            return;
+          }
+
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+          const index = cart.findIndex(item => item.title === title);
+          if (index > -1) cart[index].quantity += 1;
+          else cart.push({ title, img, price, quantity: 1 });
+
+          localStorage.setItem('cart', JSON.stringify(cart));
+          alert(`${title} added to cart!`);
+        }
+      });
+    </script>
+
+</body>
+</html>

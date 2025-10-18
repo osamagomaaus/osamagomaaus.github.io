@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account Info - Booklet</title>
+<link rel="stylesheet" href="./css/style.css">
+<style>
+body{font-family:Arial,sans-serif;background:#f9f9f9;}
+.account-card{background:#fff;padding:2rem;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,0.1);max-width:600px;margin:2rem auto;}
+.order-list{margin-top:1rem;border-top:1px solid #ccc;padding-top:1rem;}
+.order-item{padding:0.5rem 0;border-bottom:1px solid #eee;}
+.glow{box-shadow:0 0 20px #28a745;}
+</style>
+</head>
+<body>
+<section>
+<div class="account-card" id="account-card">
+<h2>Account Information</h2>
+<p><strong>Name:</strong> <span id="acc-name">—</span></p>
+<p><strong>Email:</strong> <span id="acc-email">—</span></p>
+<p><strong>Phone:</strong> <span id="acc-phone">—</span></p>
+
+<h3>Order History</h3>
+<div id="order-history" class="order-list">Loading orders...</div>
+
+<button id="logout-btn">Logout</button>
+</div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', async function(){
+  const saved = JSON.parse(localStorage.getItem('booklet_user')|| '{}');
+  if(!saved.userId){ window.location.href='signin.html'; return; }
+
+  // Display user info
+  document.getElementById('acc-name').textContent = saved.fullname || 'Not set';
+  document.getElementById('acc-email').textContent = saved.email || 'Not set';
+  document.getElementById('acc-phone').textContent = saved.phone || 'Not set';
+
+  // Glow effect
+  document.getElementById('account-card').classList.add('glow');
+
+  // Fetch orders
+  try {
+    const res = await fetch('/orders/'+saved.userId, {headers:{'Authorization': saved.token}});
+    const data = await res.json();
+    const container = document.getElementById('order-history');
+    if(data.success && data.orders.length>0){
+      container.innerHTML = '';
+      data.orders.forEach(order=>{
+        const div = document.createElement('div');
+        div.className='order-item';
+        div.textContent = `Order #${order.order_number} | Amount: $${order.total_amount} | Status: ${order.status} | Date: ${new Date(order.date).toLocaleString()}`;
+        container.appendChild(div);
+      });
+    } else { container.textContent = 'No orders yet.'; }
+  } catch(err){ console.error(err); document.getElementById('order-history').textContent='Failed to load orders'; }
+
+  // Logout
+  document.getElementById('logout-btn').addEventListener('click', ()=>{
+    localStorage.removeItem('booklet_user');
+    window.location.href='signin.html';
+  });
+});
+</script>
+</body>
+</html>

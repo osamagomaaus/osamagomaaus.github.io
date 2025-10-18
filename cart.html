@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booklet - Cart</title>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+<style>
+.cart-container { display:flex; flex-direction:column; gap:20px; margin:20px auto; max-width:1000px; }
+.cart-item { display:flex; align-items:center; background:#fff; border-radius:15px; box-shadow:0 4px 15px rgba(0,0,0,0.1); padding:15px; }
+.cart-item img { width:120px; height:160px; border-radius:10px; object-fit:cover; }
+.cart-item .content { flex:1; margin-left:20px; }
+.cart-item .content h3 { font-size:1.2rem; margin-bottom:5px; }
+.cart-item .content p { color:#666; margin-bottom:10px; }
+.cart-item .content input.quantity { width:60px; padding:5px; border-radius:5px; border:1px solid #ccc; margin-right:10px; }
+.cart-item .content .remove-btn { background:#ff4d4d; color:#fff; border:none; padding:7px 12px; border-radius:5px; cursor:pointer; }
+.payment-methods { margin:30px auto; max-width:500px; display:flex; flex-direction:column; gap:15px; text-align:center; }
+.heading span { font-size:1.5rem; font-weight:bold; display:block; margin-bottom:20px; text-align:center; }
+.cart-total { text-align:right; font-size:1.3rem; font-weight:bold; margin-top:20px; }
+</style>
+</head>
+<body>
+<header class="header">
+  <a href="index.html" class="logo"><i class="fas fa-book"></i> Booklet</a>
+</header>
+
+<section class="cart">
+  <h1 class="heading"><span>Your Shopping Cart</span></h1>
+  <div class="cart-container" id="cart-container"></div>
+  <div class="cart-total" id="cart-total">Total: $0.00</div>
+
+  <h2 class="heading"><span>Payment</span></h2>
+  <div class="payment-methods">
+    <div id="paypal-button-container"></div>
+  </div>
+</section>
+
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<script src="cart.js"></script>
+</body>
+</html>

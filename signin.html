@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In / Register - Booklet</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+<style>
+/* Base & Reset */
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
+body{background:#f5f6fa;display:flex;justify-content:center;align-items:center;min-height:100vh;}
+a{text-decoration:none;color:#007bff;}
+
+/* Auth Container */
+.auth-container{display:flex;max-width:900px;width:100%;background:#fff;border-radius:12px;box-shadow:0 6px 30px rgba(0,0,0,0.1);overflow:hidden;flex-wrap:wrap;}
+.auth-image{flex:1;background:url('https://images.unsplash.com/photo-1512820790803-83ca734da794') center/cover no-repeat;min-height:450px;}
+.auth-form{flex:1;padding:3rem;min-width:320px;}
+.auth-form h2{margin-bottom:1.5rem;color:#333;font-weight:600;text-align:center;font-size:2rem;}
+.auth-form input{width:100%;padding:0.75rem 1rem;margin-bottom:1rem;border-radius:8px;border:1px solid #ccc;font-size:1rem;transition:0.3s;}
+.auth-form input:focus{outline:none;border-color:#007bff;}
+.auth-form .btn{width:100%;padding:0.9rem;border:none;border-radius:8px;background:#007bff;color:#fff;font-size:1rem;font-weight:600;cursor:pointer;transition:0.3s;}
+.auth-form .btn:hover{background:#0056b3;}
+.auth-form .toggle{text-align:center;margin-top:1rem;font-size:0.95rem;color:#555;}
+.auth-form .toggle span{color:#007bff;cursor:pointer;font-weight:500;}
+.auth-form .message{text-align:center;margin-bottom:1rem;font-size:0.9rem;}
+.auth-form .message.error{color:#dc3545;}
+.auth-form .message.success{color:#28a745;}
+.remember-container{display:flex;align-items:center;margin-bottom:1rem;}
+.remember-container input{margin-right:0.5rem;}
+@media(max-width:768px){ .auth-container{flex-direction:column;} .auth-image{min-height:250px;} }
+</style>
+</head>
+<body>
+
+<div class="auth-container">
+  <div class="auth-image"></div>
+  <div class="auth-form">
+    <h2 id="form-title">Sign In</h2>
+    <div class="message" id="form-message"></div>
+    <form id="auth-form">
+      <input type="text" id="fullname" placeholder="Full Name" style="display:none;">
+      <input type="tel" id="phone" placeholder="Phone Number" style="display:none;">
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <div class="remember-container">
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Remember me</label>
+      </div>
+      <input type="submit" class="btn" value="Sign In" id="submit-btn">
+    </form>
+    <div class="toggle">
+      <span id="toggle-link">Create an account</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const authForm = document.getElementById('auth-form');
+const toggleLink = document.getElementById('toggle-link');
+const formTitle = document.getElementById('form-title');
+const submitBtn = document.getElementById('submit-btn');
+const messageEl = document.getElementById('form-message');
+
+const fullnameInput = document.getElementById('fullname');
+const phoneInput = document.getElementById('phone');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const rememberInput = document.getElementById('remember-me');
+
+let isRegister = false;
+
+// Toggle Login/Register
+toggleLink.addEventListener('click', () => {
+  isRegister = !isRegister;
+  if(isRegister){
+    fullnameInput.style.display='block';
+    phoneInput.style.display='block';
+    submitBtn.value='Register';
+    formTitle.textContent='Register';
+    toggleLink.textContent='Already have an account? Sign In';
+    messageEl.textContent='';
+  } else {
+    fullnameInput.style.display='none';
+    phoneInput.style.display='none';
+    submitBtn.value='Sign In';
+    formTitle.textContent='Sign In';
+    toggleLink.textContent='Create an account';
+    messageEl.textContent='';
+  }
+});
+
+// Validate
+function validateEmail(email){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+function validatePhone(phone){ return /^[0-9+]{7,15}$/.test(phone); }
+function validatePassword(password){ return password.length >= 6; }
+function validateFullname(name){ return name.length >= 3; }
+
+// Submit
+authForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  messageEl.textContent='';
+  messageEl.className='message';
+
+  const email = emailInput.value.trim();
+  const password = passwordInput.value.trim();
+
+  if(!validateEmail(email)){ messageEl.textContent='Invalid email'; messageEl.classList.add('error'); return; }
+  if(!validatePassword(password)){ messageEl.textContent='Password must be at least 6 chars'; messageEl.classList.add('error'); return; }
+
+  if(isRegister){
+    const fullname = fullnameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    if(!validateFullname(fullname)){ messageEl.textContent='Fullname too short'; messageEl.classList.add('error'); return; }
+    if(!validatePhone(phone)){ messageEl.textContent='Invalid phone'; messageEl.classList.add('error'); return; }
+
+    try{
+      const res = await fetch('/user', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({fullname, phone, email, password})
+      });
+      const data = await res.json();
+      if(data.success){
+        localStorage.setItem('booklet_user', JSON.stringify({fullname, phone, email, userId:data.userId}));
+        messageEl.textContent='Registered! Redirecting...';
+        messageEl.classList.add('success');
+        setTimeout(()=>{ window.location.href='signin.html'; }, 1000);
+      } else {
+        messageEl.textContent=data.message||'Registration failed';
+        messageEl.classList.add('error');
+      }
+    }catch(err){ console.error(err); messageEl.textContent='Server error'; messageEl.classList.add('error'); }
+  } else {
+    try{
+      const res = await fetch('/login', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email,password})
+      });
+      const data = await res.json();
+      if(data.success){
+        localStorage.setItem('booklet_user', JSON.stringify({...data.user, token:data.token}));
+        messageEl.textContent='Login successful! Redirecting...';
+        messageEl.classList.add('success');
+        setTimeout(()=>{ window.location.href='index.html'; }, 800);
+      } else {
+        messageEl.textContent=data.message||'Login failed';
+        messageEl.classList.add('error');
+      }
+    }catch(err){ console.error(err); messageEl.textContent='Server error'; messageEl.classList.add('error'); }
+  }
+});
+</script>
+</body>
+</html>
